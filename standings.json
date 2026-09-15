@@ -1,6 +1,106 @@
 {
   "status": "SUCCESS",
-  "updatedAt": "2026-09-15T06:58:41.116Z",
-  "source": "Liquipedia First Leg via GitHub Actions",
-  "standings": []
+  "updatedAt": "2026-09-15T07:02:05.284Z",
+  "source": "AOG Fallback Feed",
+  "standings": [
+    {
+      "rank": 1,
+      "tag": "SGP",
+      "name": "Saigon Phantom",
+      "wins": 2,
+      "losses": 0,
+      "played": 2,
+      "diff": 3,
+      "points": 2,
+      "bounty": 70
+    },
+    {
+      "rank": 2,
+      "tag": "FPT",
+      "name": "FPT x Flash",
+      "wins": 1,
+      "losses": 0,
+      "played": 1,
+      "diff": 2,
+      "points": 1,
+      "bounty": 40
+    },
+    {
+      "rank": 3,
+      "tag": "FPL",
+      "name": "FPT Polytechnic",
+      "wins": 1,
+      "losses": 1,
+      "played": 2,
+      "diff": 2,
+      "points": 1,
+      "bounty": 70
+    },
+    {
+      "rank": 4,
+      "tag": "1S",
+      "name": "One Star Esports",
+      "wins": 1,
+      "losses": 0,
+      "played": 1,
+      "diff": 2,
+      "points": 1,
+      "bounty": 40
+    },
+    {
+      "rank": 5,
+      "tag": "BOX",
+      "name": "BOX Gaming",
+      "wins": 1,
+      "losses": 0,
+      "played": 1,
+      "diff": 2,
+      "points": 1,
+      "bounty": 40
+    },
+    {
+      "rank": 6,
+      "tag": "GAM",
+      "name": "GAM Esports",
+      "wins": 0,
+      "losses": 1,
+      "played": 1,
+      "diff": -2,
+      "points": 0,
+      "bounty": 10
+    },
+    {
+      "rank": 7,
+      "tag": "TS",
+      "name": "Team Secret",
+      "wins": 0,
+      "losses": 1,
+      "played": 1,
+      "diff": -2,
+      "points": 0,
+      "bounty": 10
+    },
+    {
+      "rank": 8,
+      "tag": "BME",
+      "name": "Big Man Esports",
+      "wins": 0,
+      "losses": 1,
+      "played": 1,
+      "diff": -2,
+      "points": 0,
+      "bounty": 10
+    },
+    {
+      "rank": 9,
+      "tag": "RRQ",
+      "name": "Rex Regum Qeon",
+      "wins": 0,
+      "losses": 2,
+      "played": 2,
+      "diff": -5,
+      "points": 0,
+      "bounty": 10
+    }
+  ]
 }
