@@ -47,7 +47,7 @@
   </script>
 
   <style>
-    /* Thanh cuộn Gaming tùy biến */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #03050c; }
     ::-webkit-scrollbar-thumb { background: rgba(0, 242, 254, 0.35); border-radius: 999px; }
@@ -65,7 +65,7 @@
       filter: blur(120px); pointer-events: none; z-index: 0;
     }
 
-    /* Hiệu ứng quét lưới Hologram */
+    /* Hiệu ứng lưới Hologram */
     .scanline-grid {
       background-size: 40px 40px;
       background-image: 
@@ -82,7 +82,7 @@
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 242, 254, 0.05);
     }
 
-    /* Typography Chrome Kim Loại Phát Quang */
+    /* Typography Chrome Kim Loại */
     .chrome-heading {
       font-family: 'Orbitron', sans-serif;
       font-weight: 900;
@@ -93,7 +93,7 @@
       filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.5));
     }
 
-    /* Đường nối nhánh đấu SVG Playoff */
+    /* Sơ đồ nhánh đấu Vector SVG */
     .bracket-svg {
       position: absolute;
       top: 0; left: 0;
@@ -114,7 +114,7 @@
       filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.8));
     }
 
-    /* Modal chống lỗi đơ màn hình */
+    /* Quản lý Modal bằng CSS thuần chống lỗi đơ màn hình */
     .system-modal {
       display: none !important;
       position: fixed;
@@ -166,17 +166,17 @@
           </div>
         </div>
 
-        <!-- Global Action Hub -->
+        <!-- Utility Bar -->
         <div class="flex items-center gap-2.5">
-          <!-- Live Liquipedia Sync Button -->
-          <button onclick="triggerLiquipediaSync()" id="liquipediaSyncBtn" title="Bấm để đồng bộ tự động từ Liquipedia" class="hidden sm:flex items-center gap-2 bg-[#0d163a] border border-cyan-500/40 px-3 py-1.5 rounded-lg hover:border-cyan-400 transition">
+          <!-- Nút Live Liquipedia Sync -->
+          <button onclick="triggerLiquipediaSync()" id="liquipediaSyncBtn" title="Bấm để đồng bộ dữ liệu trực tiếp từ Liquipedia" class="hidden sm:flex items-center gap-2 bg-[#0d163a] border border-cyan-500/40 px-3 py-1.5 rounded-lg hover:border-cyan-400 transition">
             <span class="w-2 h-2 rounded-full bg-green-400 live-pulse"></span>
             <span class="text-[10px] font-glory font-bold text-slate-300 uppercase tracking-wider">Liquipedia Sync</span>
             <i class="fa-solid fa-rotate text-cyan-400 text-xs" id="syncIcon"></i>
           </button>
 
-          <!-- Quick Paste/Import Button -->
-          <button onclick="openModal('quickImportModal')" title="Dán nhanh văn bản hoặc bảng kết quả" class="px-2.5 py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold transition flex items-center gap-1.5">
+          <!-- Nút Nhập Nhanh Smart Importer -->
+          <button onclick="openModal('quickImportModal')" title="Dán nhanh văn bản bảng kết quả" class="px-2.5 py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold transition flex items-center gap-1.5">
             <i class="fa-solid fa-paste text-purple-400"></i>
             <span class="hidden md:inline">Nhập Nhanh</span>
           </button>
@@ -188,13 +188,13 @@
             <span id="userPoints" class="font-glory text-base font-black text-cyan-400">18</span>
           </div>
 
-          <!-- Master Admin -->
+          <!-- Bảng Quản Trị -->
           <button onclick="openModal('adminMasterModal')" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-600/20 hover:from-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-bold uppercase flex items-center gap-1.5 transition">
             <i class="fa-solid fa-sliders text-cyan-400"></i>
             <span class="hidden md:inline">Quản Trị</span>
           </button>
 
-          <!-- Sync Modal Trigger -->
+          <!-- Nút Cấu Hình Đồng Bộ -->
           <button onclick="openModal('syncModal')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-cloud-arrow-up text-cyan-400"></i>
             <span class="hidden md:inline">Đồng Bộ</span>
@@ -202,7 +202,7 @@
         </div>
       </div>
 
-      <!-- NAVIGATION TABS -->
+      <!-- MAIN TABS -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <nav class="flex space-x-2 overflow-x-auto py-2 no-scrollbar" id="navBarTabs">
           <button onclick="switchTab('tabMatchSchedule')" data-tab="tabMatchSchedule" class="tab-btn active px-4 py-1.5 rounded text-xs font-glory font-bold uppercase tracking-wider transition flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-black shadow-md shadow-cyan-500/20">
@@ -266,13 +266,13 @@
               </h2>
             </div>
             <p class="text-xs text-slate-400 mt-1">
-              Chỉnh sửa trực tiếp số liệu hoặc nhấn "Live Sync Liquipedia" để nạp BXH mới nhất từ giải đấu.
+              Chỉnh sửa trực tiếp số liệu hoặc nhấn "Liquipedia Sync" để nạp BXH thời gian thực mới nhất từ giải đấu.
             </p>
           </div>
 
           <div class="flex items-center gap-2">
             <button onclick="triggerLiquipediaSync()" class="px-3 py-1.5 rounded bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-bold flex items-center gap-1.5">
-              <i class="fa-solid fa-cloud-arrow-down"></i> Live Sync Liquipedia
+              <i class="fa-solid fa-cloud-arrow-down"></i> Liquipedia Sync
             </button>
             <button onclick="recalculateStandingsStats()" class="px-3 py-1.5 rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-400/30 text-xs font-bold">
               <i class="fa-solid fa-calculator mr-1"></i> Tính Lại Điểm
@@ -346,7 +346,7 @@
           </svg>
 
           <div class="grid grid-cols-4 gap-8 relative z-10">
-            <!-- Cột 1 -->
+            <!-- Cột 1: Bán kết nhánh thắng -->
             <div class="space-y-6">
               <div class="text-center font-glory text-xs font-bold text-cyan-400 uppercase tracking-widest border-b border-cyan-500/30 pb-2">
                 Bán Kết Nhánh Thắng (BO7)
@@ -402,7 +402,7 @@
               </div>
             </div>
 
-            <!-- Cột 2 -->
+            <!-- Cột 2: Chung kết nhánh -->
             <div class="space-y-16">
               <div>
                 <div class="text-center font-glory text-xs font-bold text-cyan-300 uppercase tracking-widest border-b border-cyan-500/30 pb-2 mb-4">
@@ -467,7 +467,7 @@
               </div>
             </div>
 
-            <!-- Cột 4: Nhà Vô Địch -->
+            <!-- Cột 4: Nhà Vô Địch Dự Đoán -->
             <div class="flex flex-col justify-center items-center">
               <div class="mecha-glass p-6 rounded-xl text-center w-full border border-yellow-500/50 bg-gradient-to-b from-yellow-500/15 to-transparent">
                 <div class="w-16 h-16 mx-auto rounded-xl bg-gradient-to-br from-yellow-400 to-amber-600 p-0.5 shadow-lg shadow-yellow-500/30 mb-3 flex items-center justify-center">
@@ -484,12 +484,12 @@
         </div>
       </section>
 
-      <!-- TAB 4: THỤY SĨ (SWISS STAGE) -->
+      <!-- TAB 4: THỂ THỨC THỤY SĨ (SWISS STAGE) -->
       <section id="tabSwissStage" class="tab-content hidden space-y-6">
         <div class="mecha-glass p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 bg-cyan-500/20 text-cyan-300 text-[10px] font-glory font-bold uppercase rounded">
+              <span class="px-2.5 py-0.5 bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 text-[10px] font-glory font-bold uppercase rounded">
                 AIC / APL INTERNATIONAL
               </span>
               <h2 class="font-glory text-xl font-bold text-white uppercase tracking-wider">
@@ -540,14 +540,14 @@
           <span class="text-xs text-slate-500 border-l border-slate-800 pl-3">AOG W26 Single-File Engine</span>
         </div>
         <div class="text-[11px] text-slate-500 font-mono">
-          Cập nhật thông minh: Hỗ trợ Liquipedia Proxy không cần Admin Token & Quick Importer
+          Nền tảng Pick'em Esport độc lập • Sẵn sàng xuất bản GitHub Pages
         </div>
       </div>
     </footer>
 
   </div>
 
-  <!-- MODAL: NHẬP NHANH BẢNG KẾT QUẢ TỪ BẤT KỲ ĐÂU (SMART IMPORTER) -->
+  <!-- MODAL: NHẬP NHANH BẢNG KẾT QUẢ TỰ ĐỘNG BÓC TÁCH (SMART IMPORTER) -->
   <div id="quickImportModal" class="system-modal">
     <div class="mecha-glass w-full max-w-lg rounded-xl p-6 m-4 flex flex-col border border-purple-500/40">
       <div class="flex items-center justify-between pb-3 border-b border-white/10">
@@ -576,7 +576,7 @@
     </div>
   </div>
 
-  <!-- MODAL MASTER: QUẢN TRỊ GIẢI ĐẤU -->
+  <!-- MODAL MASTER: TRUNG TÂM QUẢN TRỊ GIẢI ĐẤU -->
   <div id="adminMasterModal" class="system-modal">
     <div class="mecha-glass w-full max-w-3xl rounded-xl p-6 m-4 max-h-[90vh] flex flex-col border border-cyan-500/40">
       <div class="flex items-center justify-between pb-4 border-b border-white/10">
@@ -797,6 +797,7 @@
       { id: 'm8', week: 4, dayTitle: 'CHỦ NHẬT - 20/09', time: '19:30', teamA: 'FPL', teamB: 'FPT', format: 'BO5', predWinner: null, predScoreA: 2, predScoreB: 3 }
     ];
 
+    // Cấu hình URL Google Apps Script của bạn làm mặc định
     let appState = {
       teams: [],
       matches: [],
@@ -814,7 +815,7 @@
       swiss: [],
       points: 18,
       bountyBase: '30tr',
-      gasUrl: ''
+      gasUrl: 'https://script.google.com/macros/s/AKfycbwjuNawCv64tZKJEk8TcYxfQpKJrgYvLzWqoqbYfLI4V6SxDHIpgxkrf2OAzAUijLpz_g/exec'
     };
 
     let activeWeek = 4;
@@ -860,7 +861,7 @@
         swiss: Array.isArray(data.swiss) && data.swiss.length ? data.swiss : [],
         points: typeof data.points === 'number' ? data.points : 18,
         bountyBase: data.bountyBase || '30tr',
-        gasUrl: data.gasUrl || ''
+        gasUrl: data.gasUrl || 'https://script.google.com/macros/s/AKfycbwjuNawCv64tZKJEk8TcYxfQpKJrgYvLzWqoqbYfLI4V6SxDHIpgxkrf2OAzAUijLpz_g/exec'
       };
     }
 
