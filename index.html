@@ -879,7 +879,6 @@
     // --- LIQUIPEDIA SYNC & FALLBACK SMART IMPORT ---
     async function triggerLiquipediaSync() {
       if (!appState.gasUrl) {
-        // Fallback mở Smart Importer nếu chưa có Web App URL
         openModal('quickImportModal');
         return;
       }
@@ -914,14 +913,12 @@
           throw new Error("Không thể kết nối Liquipedia qua Proxy");
         }
       } catch(err) {
-        // Nếu proxy gặp lỗi, chuyển hướng sang trình nhập nhanh tiện lợi
         openModal('quickImportModal');
       } finally {
         if (syncIcon) syncIcon.classList.remove('fa-spin');
       }
     }
 
-    // Thuật toán thông minh tự bóc tách text copy
     function processQuickImport() {
       const raw = document.getElementById('quickImportInput').value.trim();
       if (!raw) {
@@ -936,9 +933,8 @@
       lines.forEach(line => {
         appState.teams.forEach(team => {
           if (line.toUpperCase().includes(team.tag.toUpperCase())) {
-            // Tìm định dạng Thắng-Thua (VD: 2-0 hoặc 2 0)
             const scoreMatch = line.match(/(\d+)\s*[-–]\s*(\d+)/) || line.match(/\s+(\d+)\s+(\d+)\s+/);
-            const diffMatch = line.match(/([+-]?\d+)(?!.*[+-]?\d+)/); // số cuối cùng là hiệu số
+            const diffMatch = line.match(/([+-]?\d+)(?!.*[+-]?\d+)/);
 
             if (scoreMatch) {
               team.wins = parseInt(scoreMatch[1]);
