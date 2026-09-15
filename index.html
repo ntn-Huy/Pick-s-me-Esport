@@ -163,7 +163,7 @@
 
         <!-- Utility Bar -->
         <div class="flex items-center gap-2.5">
-          <!-- Live Liquipedia Sync Button -->
+          <!-- Nút Live Liquipedia Sync -->
           <button onclick="triggerLiquipediaSync()" id="liquipediaSyncBtn" title="Đồng bộ tự động từ Liquipedia" class="hidden sm:flex items-center gap-2 bg-[#0d163a] border border-cyan-500/40 px-3 py-1.5 rounded-lg hover:border-cyan-400 transition">
             <span class="w-2 h-2 rounded-full bg-green-400 live-pulse"></span>
             <span class="text-[10px] font-glory font-bold text-slate-300 uppercase tracking-wider">Liquipedia</span>
@@ -688,7 +688,7 @@
     </div>
   </div>
 
-  <!-- MODAL ĐỒNG BỘ CLOUD & SAO LƯU ĐA THIẾT BỊ -->
+  <!-- MODAL ĐỒNG BỘ CLOUD -->
   <div id="syncModal" class="system-modal">
     <div class="glass-panel w-full max-w-lg rounded-xl p-6 m-4 border border-cyan-500/30">
       <div class="flex items-center justify-between pb-4 border-b border-white/10">
@@ -706,7 +706,6 @@
           <p class="text-[11px] text-slate-400 mt-1">Đóng vai trò máy chủ lưu trữ toàn bộ logo, tỉ số và bảng điểm của bạn.</p>
         </div>
 
-        <!-- 2 Nút Đồng Bộ Hai Chiều: Đẩy lên và Kéo về -->
         <div class="grid grid-cols-2 gap-2">
           <button onclick="forceCloudPush()" class="p-2.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-bold flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-upload"></i> Đẩy Lên Cloud (Push)
@@ -716,7 +715,6 @@
           </button>
         </div>
 
-        <!-- Sao lưu & Phục hồi JSON Offline -->
         <div class="pt-3 border-t border-white/10">
           <label class="block text-[11px] font-bold text-slate-400 uppercase mb-2">Sao Lưu Thủ Công 1-Chạm (Không cần mạng)</label>
           <div class="flex gap-2">
@@ -850,7 +848,7 @@
       saveToStorage(false);
       renderAllComponents();
 
-      // Nếu trình duyệt mới hoàn toàn, tự động thử kéo dữ liệu đám mây về
+      // Nếu trình duyệt mới chưa có logo tùy biến, tự động thử kéo dữ liệu đám mây về
       if (!localStorage.getItem('AOG_W26_ERA_NEXUS_STATE') && appState.gasUrl) {
         pullStateFromCloud(true);
       }
@@ -900,7 +898,15 @@
       try {
         const fetchUrl = `${appState.gasUrl}${appState.gasUrl.includes('?') ? '&' : '?'}action=pull_state`;
         const res = await fetch(fetchUrl);
-        const data = await res.json();
+        const text = await res.text();
+
+        // Kiểm tra an toàn xem có bị trả về trang HTML đăng nhập không
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch(parseErr) {
+          throw new Error("Google Apps Script đang trả về trang đăng nhập HTML. Hãy mở Apps Script > Deploy > Manage deployments > Sửa Who has access thành 'Anyone'.");
+        }
 
         if (data && data.status === "SUCCESS" && data.state) {
           appState = sanitizeAppState(data.state);
@@ -913,7 +919,7 @@
           if (!silent) alert(data.message || "Không có dữ liệu trên Cloud.");
         }
       } catch(err) {
-        if (!silent) alert("Lỗi khi kết nối Cloud: " + err.message);
+        if (!silent) alert(err.message);
       }
     }
 
@@ -977,7 +983,7 @@
         try {
           result = JSON.parse(textResponse);
         } catch(parseErr) {
-          throw new Error("Google Apps Script phản hồi không đúng định dạng JSON.");
+          throw new Error("Google Apps Script trả về trang HTML. Hãy kiểm tra quyền Deploy 'Anyone'.");
         }
 
         if (result && result.status === "SUCCESS" && result.data && result.data.standings && result.data.standings.length > 0) {
@@ -1465,7 +1471,7 @@
       tempAdminLogo = '';
       document.getElementById('adminLogoLabel').innerText = 'Logo';
 
-      saveToStorage(true); // Tự động đẩy logo mới lên Google Sheets ngay
+      saveToStorage(true);
       renderAllComponents();
     }
 
