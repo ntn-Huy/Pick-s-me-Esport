@@ -2,12 +2,12 @@ name: AOG Liquipedia Auto Sync
 
 on:
   schedule:
-    # Tự động cào dữ liệu mỗi 30 phút
+    # Tự động chạy mỗi 30 phút
     - cron: '*/30 * * * *'
-  workflow_dispatch: # Cho phép bấm nút chạy thử bằng tay
+  workflow_dispatch: # Cho phép bấm nút chạy thủ công
 
 permissions:
-  contents: write # Cấp quyền ghi file standings.json vào repo
+  contents: write # Cấp quyền ghi file standings.json vào repository
 
 jobs:
   scrape-and-commit:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: setup/node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
