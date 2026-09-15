@@ -7,7 +7,7 @@
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Orbitron, Teko, Rajdhani, Plus Jakarta Sans -->
+  <!-- Google Fonts Esport -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rajdhani:wght@600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
@@ -65,7 +65,6 @@
       filter: blur(120px); pointer-events: none; z-index: 0;
     }
 
-    /* Lưới Hologram scanline */
     .scanline-grid {
       background-size: 40px 40px;
       background-image: 
@@ -73,7 +72,7 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
 
-    /* Khối kính Dark Liquid Glass */
+    /* Khối kính Liquid Glass */
     .glass-panel {
       background: linear-gradient(135deg, rgba(14, 21, 53, 0.85) 0%, rgba(6, 10, 28, 0.92) 100%);
       backdrop-filter: blur(20px) saturate(200%);
@@ -87,7 +86,6 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Chrome Heading */
     .chrome-heading {
       font-family: 'Orbitron', sans-serif;
       font-weight: 900;
@@ -98,36 +96,28 @@
       filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.5));
     }
 
-    /* Đường nối nhánh đấu SVG */
+    /* Sơ đồ nhánh Playoff Vector SVG */
     .bracket-svg {
-      position: absolute;
-      top: 0; left: 0;
+      position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 5;
+      pointer-events: none; z-index: 5;
     }
     .bracket-path {
-      fill: none;
-      stroke: rgba(0, 242, 254, 0.3);
-      stroke-width: 2;
-      stroke-dasharray: 4, 4;
+      fill: none; stroke: rgba(0, 242, 254, 0.3);
+      stroke-width: 2; stroke-dasharray: 4, 4;
     }
     .bracket-path-active {
-      fill: none;
-      stroke: #00f2fe;
+      fill: none; stroke: #00f2fe;
       stroke-width: 2.5;
       filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.8));
     }
 
-    /* Modal chống lỗi đơ màn hình */
+    /* Quản lý Modal bằng CSS thuần độc lập - Chống lỗi đơ/treo trang */
     .system-modal {
       display: none !important;
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      background: rgba(3, 5, 12, 0.9);
+      position: fixed; inset: 0; z-index: 9999;
+      align-items: center; justify-content: center;
+      background: rgba(3, 5, 12, 0.92);
       backdrop-filter: blur(16px);
     }
     .system-modal.active {
@@ -173,15 +163,15 @@
 
         <!-- Utility Bar -->
         <div class="flex items-center gap-2.5">
-          <!-- Nút Liquipedia Sync -->
-          <button onclick="triggerLiquipediaSync()" id="liquipediaSyncBtn" title="Bấm để đồng bộ trực tiếp từ Liquipedia" class="hidden sm:flex items-center gap-2 bg-[#0d163a] border border-cyan-500/40 px-3 py-1.5 rounded-lg hover:border-cyan-400 transition">
+          <!-- Live Liquipedia Sync Button -->
+          <button onclick="triggerLiquipediaSync()" id="liquipediaSyncBtn" title="Đồng bộ tự động từ Liquipedia" class="hidden sm:flex items-center gap-2 bg-[#0d163a] border border-cyan-500/40 px-3 py-1.5 rounded-lg hover:border-cyan-400 transition">
             <span class="w-2 h-2 rounded-full bg-green-400 live-pulse"></span>
-            <span class="text-[10px] font-glory font-bold text-slate-300 uppercase tracking-wider">Liquipedia Sync</span>
+            <span class="text-[10px] font-glory font-bold text-slate-300 uppercase tracking-wider">Liquipedia</span>
             <i class="fa-solid fa-rotate text-cyan-400 text-xs" id="syncIcon"></i>
           </button>
 
-          <!-- Nút Nhập Nhanh Smart Importer -->
-          <button onclick="openModal('quickImportModal')" title="Dán nhanh văn bản bảng kết quả" class="px-2.5 py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold transition flex items-center gap-1.5">
+          <!-- Nút Nhập Nhanh Smart Auto-Parse -->
+          <button onclick="openModal('quickImportModal')" title="Dán văn bản bảng xếp hạng để tự động nhận diện" class="px-2.5 py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold transition flex items-center gap-1.5">
             <i class="fa-solid fa-paste text-purple-400"></i>
             <span class="hidden md:inline">Nhập Nhanh</span>
           </button>
@@ -193,13 +183,13 @@
             <span id="userPoints" class="font-glory text-base font-black text-cyan-400">18</span>
           </div>
 
-          <!-- Quản Trị -->
+          <!-- Bảng Quản Trị Đội & Mùa Giải -->
           <button onclick="openModal('adminMasterModal')" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-600/20 hover:from-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-bold uppercase flex items-center gap-1.5 transition">
             <i class="fa-solid fa-sliders text-cyan-400"></i>
             <span class="hidden md:inline">Quản Trị</span>
           </button>
 
-          <!-- Đồng Bộ Cloud -->
+          <!-- Đồng Bộ Đám Mây & Sao Lưu -->
           <button onclick="openModal('syncModal')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-cloud-arrow-up text-cyan-400"></i>
             <span class="hidden md:inline">Đồng Bộ</span>
@@ -226,7 +216,7 @@
       </div>
     </header>
 
-    <!-- MAIN CONTAINER -->
+    <!-- MAIN INTERACTIVE HUB -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full">
       
       <!-- TAB 1: DỰ ĐOÁN TRẬN ĐẤU & TỈ SỐ -->
@@ -258,7 +248,7 @@
         <div id="matchCardsContainer" class="space-y-6"></div>
       </section>
 
-      <!-- TAB 2: BẢNG XẾP HẠNG & TỰ ĐỘNG TÍNH TIỀN THƯỞNG -->
+      <!-- TAB 2: BẢNG XẾP HẠNG & TỰ ĐỘNG TÍNH TIỀN THƯỞNG BOUNTY HUNTER -->
       <section id="tabStandings" class="tab-content hidden space-y-6">
         <div class="glass-panel p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
@@ -271,7 +261,7 @@
               </h2>
             </div>
             <p class="text-xs text-slate-400 mt-1">
-              Chỉnh sửa trực tiếp số liệu hoặc nhấn "Liquipedia Sync" để nạp BXH thời gian thực mới nhất từ giải đấu.
+              Chỉnh sửa trực tiếp số liệu hoặc nhấn "Liquipedia Sync" để tự động cập nhật kết quả mới nhất.
             </p>
           </div>
 
@@ -489,7 +479,7 @@
         </div>
       </section>
 
-      <!-- TAB 4: THỤY SĨ (SWISS STAGE) -->
+      <!-- TAB 4: THỂ THỨC THỤY SĨ (SWISS STAGE) -->
       <section id="tabSwissStage" class="tab-content hidden space-y-6">
         <div class="glass-panel p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
@@ -545,7 +535,7 @@
           <span class="text-xs text-slate-500 border-l border-slate-800 pl-3">AOG W26 Single-File Engine</span>
         </div>
         <div class="text-[11px] text-slate-500 font-mono">
-          Nền tảng Pick'em Esport độc lập • Tích hợp Google Apps Script Serverless Proxy
+          Nền tảng Pick'em Esport độc lập • Hỗ trợ đồng bộ 2 chiều qua Google Apps Script
         </div>
       </div>
     </footer>
@@ -565,7 +555,7 @@
 
       <div class="py-3 space-y-3">
         <p class="text-xs text-slate-300 leading-relaxed">
-          Bôi đen copy văn bản bảng xếp hạng từ trang web Liquipedia hoặc Facebook dán vào đây. Hệ thống sẽ tự bóc tách số trận, thắng, thua và hiệu số trong 0.5s:
+          Bôi đen copy văn bản bảng xếp hạng từ trang web Liquipedia hoặc bài đăng Facebook dán vào đây. Hệ thống sẽ tự động bóc tách số trận, thắng, thua và hiệu số trong 0.5s:
         </p>
         <textarea id="quickImportInput" rows="6" placeholder="Ví dụ dán text từ web:
 1	Saigon Phantom	2-0	+3
@@ -698,13 +688,13 @@
     </div>
   </div>
 
-  <!-- MODAL ĐỒNG BỘ CLOUD -->
+  <!-- MODAL ĐỒNG BỘ CLOUD & SAO LƯU ĐA THIẾT BỊ -->
   <div id="syncModal" class="system-modal">
     <div class="glass-panel w-full max-w-lg rounded-xl p-6 m-4 border border-cyan-500/30">
       <div class="flex items-center justify-between pb-4 border-b border-white/10">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-cloud-arrow-up text-cyan-400"></i>
-          <h3 class="font-glory font-bold text-base text-white uppercase tracking-wider">Đồng Bộ Cloud & Proxy Liquipedia</h3>
+          <h3 class="font-glory font-bold text-base text-white uppercase tracking-wider">Đồng Bộ Cloud & Sao Lưu Đa Thiết Bị</h3>
         </div>
         <button onclick="closeModal('syncModal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
@@ -713,17 +703,31 @@
         <div>
           <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Google Apps Script Web App URL</label>
           <input type="url" id="gasUrlInput" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-black/60 border border-white/10 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400 font-mono">
-          <p class="text-[11px] text-slate-400 mt-1">Đóng vai trò Proxy tự động cào Liquipedia không cần API Key và sao lưu dự đoán về Google Sheets.</p>
+          <p class="text-[11px] text-slate-400 mt-1">Đóng vai trò máy chủ lưu trữ toàn bộ logo, tỉ số và bảng điểm của bạn.</p>
         </div>
 
-        <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center justify-between">
-          <div class="text-xs text-slate-300 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-            <span>Chế độ: Serverless Proxy + Offline Local</span>
-          </div>
-          <button onclick="testSyncConnection()" class="px-3 py-1 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 rounded text-xs font-semibold hover:bg-cyan-500/30">
-            Thử Kết Nối
+        <!-- 2 Nút Đồng Bộ Hai Chiều: Đẩy lên và Kéo về -->
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="forceCloudPush()" class="p-2.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-bold flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-upload"></i> Đẩy Lên Cloud (Push)
           </button>
+          <button onclick="pullStateFromCloud()" class="p-2.5 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-download"></i> Tải Về Từ Cloud (Pull)
+          </button>
+        </div>
+
+        <!-- Sao lưu & Phục hồi JSON Offline -->
+        <div class="pt-3 border-t border-white/10">
+          <label class="block text-[11px] font-bold text-slate-400 uppercase mb-2">Sao Lưu Thủ Công 1-Chạm (Không cần mạng)</label>
+          <div class="flex gap-2">
+            <button onclick="exportBackupJson()" class="flex-1 px-3 py-1.5 rounded bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-200">
+              <i class="fa-solid fa-file-export mr-1 text-cyan-400"></i> Xuất File Backup (.json)
+            </button>
+            <label class="flex-1 px-3 py-1.5 rounded bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-200 cursor-pointer text-center">
+              <i class="fa-solid fa-file-import mr-1 text-purple-400"></i> Nạp File Backup
+              <input type="file" accept=".json" class="hidden" onchange="importBackupJson(event)">
+            </label>
+          </div>
         </div>
       </div>
 
@@ -845,6 +849,11 @@
       }
       saveToStorage(false);
       renderAllComponents();
+
+      // Nếu trình duyệt mới hoàn toàn, tự động thử kéo dữ liệu đám mây về
+      if (!localStorage.getItem('AOG_W26_ERA_NEXUS_STATE') && appState.gasUrl) {
+        pullStateFromCloud(true);
+      }
     }
 
     function sanitizeAppState(data) {
@@ -881,11 +890,77 @@
       return appState.teams.find(t => t.id === id) || { id, name: id, tag: id, logo: 'https://placehold.co/96x96/070c26/00f2fe?text=' + id, color: '#2563eb', played: 1, wins: 0, losses: 1, points: 0, diff: 0, bounty: 10 };
     }
 
-    // --- CƠ CHẾ LIQUIPEDIA SYNC CACHED VỚI FALLBACK MỀM MẠI ---
+    // --- ĐỒNG BỘ 2 CHIỀU CLOUD PULL & CLOUD PUSH ---
+    async function pullStateFromCloud(silent = false) {
+      if (!appState.gasUrl) {
+        if (!silent) alert("Vui lòng cấu hình URL Google Apps Script trước.");
+        return;
+      }
+
+      try {
+        const fetchUrl = `${appState.gasUrl}${appState.gasUrl.includes('?') ? '&' : '?'}action=pull_state`;
+        const res = await fetch(fetchUrl);
+        const data = await res.json();
+
+        if (data && data.status === "SUCCESS" && data.state) {
+          appState = sanitizeAppState(data.state);
+          saveToStorage(false);
+          renderAllComponents();
+          SoundEngine.playCheer();
+          confetti({ particleCount: 75, spread: 60, origin: { y: 0.6 } });
+          if (!silent) alert("Đã tải về thành công toàn bộ dữ liệu & logo từ Google Sheets!");
+        } else {
+          if (!silent) alert(data.message || "Không có dữ liệu trên Cloud.");
+        }
+      } catch(err) {
+        if (!silent) alert("Lỗi khi kết nối Cloud: " + err.message);
+      }
+    }
+
+    function forceCloudPush() {
+      saveToStorage(true);
+      SoundEngine.playCheer();
+      alert("Đã gửi yêu cầu lưu toàn bộ dữ liệu & Logo lên Google Sheets!");
+    }
+
+    // --- SAO LƯU & PHỤC HỒI FILE BACKUP JSON ---
+    function exportBackupJson() {
+      SoundEngine.playClick();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `AOG_W26_BACKUP_${Date.now()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function importBackupJson(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const parsed = JSON.parse(evt.target.result);
+          appState = sanitizeAppState(parsed);
+          saveToStorage(true);
+          renderAllComponents();
+          SoundEngine.playCheer();
+          confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+          closeModal('syncModal');
+          alert("Phục hồi dữ liệu từ file Backup thành công!");
+        } catch(err) {
+          alert("File JSON không hợp lệ.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // --- LIQUIPEDIA SYNC & FALLBACK MỀM ---
     async function triggerLiquipediaSync() {
       if (!appState.gasUrl) {
-        alert("Chưa cấu hình Google Apps Script URL. Vui lòng bấm vào nút 'Đồng Bộ' để kiểm tra.");
-        openModal('syncModal');
+        openModal('quickImportModal');
         return;
       }
 
@@ -902,7 +977,7 @@
         try {
           result = JSON.parse(textResponse);
         } catch(parseErr) {
-          throw new Error("Apps Script chưa được cấp quyền (Authorization Required).");
+          throw new Error("Google Apps Script phản hồi không đúng định dạng JSON.");
         }
 
         if (result && result.status === "SUCCESS" && result.data && result.data.standings && result.data.standings.length > 0) {
@@ -925,7 +1000,6 @@
           confetti({ particleCount: 75, spread: 65, origin: { y: 0.6 } });
           alert(`Đồng bộ thành công ${updatedCount} đội tuyển từ Liquipedia!`);
         } else {
-          // Khi dính 429 hoặc chưa bóc tách được HTML, chuyển nhẹ nhàng sang Quick Import
           openModal('quickImportModal');
         }
       } catch(err) {
@@ -935,7 +1009,6 @@
       }
     }
 
-    // Thuật toán bóc tách văn bản dán tự do (Smart Importer)
     function processQuickImport() {
       const raw = document.getElementById('quickImportInput').value.trim();
       if (!raw) {
@@ -950,7 +1023,6 @@
       lines.forEach(line => {
         appState.teams.forEach(team => {
           if (line.toUpperCase().includes(team.tag.toUpperCase()) || line.toUpperCase().includes(team.name.toUpperCase())) {
-            // Nhận diện tỉ số dạng "2-0", "2–0" hoặc khoảng trắng "2 0"
             const scoreMatch = line.match(/(\d+)\s*[-–]\s*(\d+)/) || line.match(/\s+(\d+)\s+(\d+)\s+/);
             const diffMatch = line.match(/([+-]?\d+)(?!.*[+-]?\d+)/);
 
@@ -1354,7 +1426,7 @@
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, 96, 96);
           tempAdminLogo = canvas.toDataURL('image/jpeg', 0.65);
-          document.getElementById('adminLogoLabel').innerText = 'Đã tải!';
+          document.getElementById('adminLogoLabel').innerText = 'Đã nén!';
         };
         img.src = evt.target.result;
       };
@@ -1393,7 +1465,7 @@
       tempAdminLogo = '';
       document.getElementById('adminLogoLabel').innerText = 'Logo';
 
-      saveToStorage();
+      saveToStorage(true); // Tự động đẩy logo mới lên Google Sheets ngay
       renderAllComponents();
     }
 
@@ -1405,7 +1477,7 @@
       }
       appState.teams = appState.teams.filter(t => t.id !== teamId);
       appState.standings = appState.standings.filter(id => id !== teamId);
-      saveToStorage();
+      saveToStorage(true);
       renderAllComponents();
     }
 
@@ -1414,7 +1486,7 @@
       if (val && !appState.weeks.includes(val)) {
         appState.weeks.push(val);
         appState.weeks.sort((a, b) => a - b);
-        saveToStorage();
+        saveToStorage(true);
         renderWeekFilter();
         populateSelectOptions();
         alert(`Đã thêm Tuần ${val} thành công!`);
@@ -1478,7 +1550,7 @@
 
       appState.matches.push(newMatch);
       closeModal('addMatchModal');
-      saveToStorage();
+      saveToStorage(true);
       renderMatchCards();
     }
 
@@ -1528,17 +1600,6 @@
           state: appState
         })
       }).catch(err => console.warn('Lỗi kết nối Cloud:', err));
-    }
-
-    function testSyncConnection() {
-      const url = document.getElementById('gasUrlInput').value.trim();
-      if (!url) {
-        alert('Vui lòng nhập Web App URL trước!');
-        return;
-      }
-      appState.gasUrl = url;
-      sendGasPayload();
-      alert('Đã gửi dữ liệu thử nghiệm đến Google Apps Script!');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
