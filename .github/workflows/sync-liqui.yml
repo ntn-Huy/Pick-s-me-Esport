@@ -2,12 +2,11 @@ name: AOG Liquipedia Auto Sync
 
 on:
   schedule:
-    # Tự động chạy mỗi 30 phút
     - cron: '*/30 * * * *'
-  workflow_dispatch: # Cho phép bấm nút chạy thủ công
+  workflow_dispatch:
 
 permissions:
-  contents: write # Cấp quyền ghi file standings.json vào repository
+  contents: write
 
 jobs:
   scrape-and-commit:
@@ -19,33 +18,36 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Scrape Liquipedia AOG Winter 2026
         run: |
           node -e '
           const https = require("https");
           const fs = require("fs");
+          const zlib = require("zlib");
 
-          const url = "https://liquipedia.net/honorofkings/Arena_of_Glory/2026/Winter/Group_Stage";
+          // Trang chuẩn chứa bảng xếp hạng ĐTDV Mùa Đông 2026 lượt đi
+          const url = "https://liquipedia.net/honorofkings/Arena_of_Glory/2026/Winter/Group_Stage/First_Leg";
           const options = {
             headers: {
               "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-              "Accept-Encoding": "gzip, deflate, br"
+              "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+              "Accept-Encoding": "gzip, deflate"
             }
           };
 
           https.get(url, options, (res) => {
-            let zlib = require("zlib");
             let stream = res;
-            if (res.headers["content-encoding"] === "gzip") stream = res.pipe(zlib.createGunzip());
-            else if (res.headers["content-encoding"] === "br") stream = res.pipe(zlib.createBrotliDecompress());
+            const encoding = res.headers["content-encoding"];
+            if (encoding === "gzip") stream = res.pipe(zlib.createGunzip());
+            else if (encoding === "deflate") stream = res.pipe(zlib.createInflate());
 
-            let data = "";
-            stream.on("data", chunk => data += chunk);
+            let html = "";
+            stream.on("data", chunk => html += chunk);
             stream.on("end", () => {
               const list = [];
-              const regex = /data-toggle-area-content="1"[^>]*>[\s\S]*?<span class="team-template-text"><a[^>]*>([^<]+)<\/a><\/span>[\s\S]*?<b>(\d+)<\/b>\s*[-–]\s*<b>(\d+)<\/b>[\s\S]*?<b>([+-]?\d+)<\/b>/g;
+              const rowRegex = /data-toggle-area-content="1"[^>]*>[\s\S]*?<span class="team-template-text"><a[^>]*>([^<]+)<\/a><\/span>[\s\S]*?<b>(\d+)<\/b>\s*[-–]\s*<b>(\d+)<\/b>[\s\S]*?<b>([+-]?\d+)<\/b>/g;
               let match;
               let r = 1;
               const map = {
@@ -55,17 +57,21 @@ jobs:
                 "Rex Regum Qeon": "RRQ", "Rex Regum Qeon VN": "RRQ", "BOOM Esports VN": "BME"
               };
 
-              while ((match = regex.exec(data)) !== null && r <= 10) {
-                const tag = map[match[1].trim()] || match[1].trim().toUpperCase();
+              while ((match = rowRegex.exec(html)) !== null && r <= 12) {
+                const rawName = match[1].trim();
+                const tag = map[rawName] || rawName.toUpperCase();
                 const wins = parseInt(match[2], 10);
                 const losses = parseInt(match[3], 10);
+                const diff = parseInt(match[4], 10);
+
                 list.push({
                   rank: r++,
                   tag: tag,
+                  name: rawName,
                   wins: wins,
                   losses: losses,
                   played: wins + losses,
-                  diff: parseInt(match[4], 10),
+                  diff: diff,
                   points: wins,
                   bounty: wins * 30 + 10
                 });
@@ -74,15 +80,16 @@ jobs:
               const result = {
                 status: "SUCCESS",
                 updatedAt: new Date().toISOString(),
-                source: "Liquipedia via GitHub Actions",
+                source: "Liquipedia First Leg via GitHub Actions",
                 standings: list
               };
 
               fs.writeFileSync("standings.json", JSON.stringify(result, null, 2));
-              console.log("Đã cập nhật standings.json thành công với " + list.length + " đội.");
+              console.log("Đã xuất standings.json với " + list.length + " đội tuyển.");
             });
           }).on("error", (e) => {
             console.error("Lỗi cào dữ liệu: ", e);
+            process.exit(1);
           });
           '
 
