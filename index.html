@@ -7,7 +7,7 @@
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts Esport -->
+  <!-- Google Fonts: Orbitron, Teko, Rajdhani, Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rajdhani:wght@600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
@@ -163,7 +163,7 @@
 
         <!-- Utility Bar -->
         <div class="flex items-center gap-2.5">
-          <!-- Nút Live Liquipedia Sync -->
+          <!-- Live Liquipedia Sync Button -->
           <button onclick="triggerLiquipediaSync()" id="liquipediaSyncBtn" title="Đồng bộ tự động từ Liquipedia" class="hidden sm:flex items-center gap-2 bg-[#0d163a] border border-cyan-500/40 px-3 py-1.5 rounded-lg hover:border-cyan-400 transition">
             <span class="w-2 h-2 rounded-full bg-green-400 live-pulse"></span>
             <span class="text-[10px] font-glory font-bold text-slate-300 uppercase tracking-wider">Liquipedia</span>
@@ -804,6 +804,7 @@
       { id: 'm8', week: 4, dayTitle: 'CHỦ NHẬT - 20/09', time: '19:30', teamA: 'FPL', teamB: 'FPT', format: 'BO5', predWinner: null, predScoreA: 2, predScoreB: 3 }
     ];
 
+    // CẤU HÌNH TRỰC TIẾP URL MỚI CỦA BẠN VÀO HỆ THỐNG
     let appState = {
       teams: [],
       matches: [],
@@ -821,7 +822,7 @@
       swiss: [],
       points: 18,
       bountyBase: '30tr',
-      gasUrl: 'https://script.google.com/macros/s/AKfycbwjuNawCv64tZKJEk8TcYxfQpKJrgYvLzWqoqbYfLI4V6SxDHIpgxkrf2OAzAUijLpz_g/exec'
+      gasUrl: 'https://script.google.com/macros/s/AKfycbx8hcdopvjSJaaT1OIb5xQ4aj7H_G-B6FA88v6ap9bHHxVjPSAxG3k3x6GjWkdtq0XI8A/exec'
     };
 
     let activeWeek = 4;
@@ -872,7 +873,7 @@
         swiss: Array.isArray(data.swiss) && data.swiss.length ? data.swiss : [],
         points: typeof data.points === 'number' ? data.points : 18,
         bountyBase: data.bountyBase || '30tr',
-        gasUrl: data.gasUrl || 'https://script.google.com/macros/s/AKfycbwjuNawCv64tZKJEk8TcYxfQpKJrgYvLzWqoqbYfLI4V6SxDHIpgxkrf2OAzAUijLpz_g/exec'
+        gasUrl: data.gasUrl || 'https://script.google.com/macros/s/AKfycbx8hcdopvjSJaaT1OIb5xQ4aj7H_G-B6FA88v6ap9bHHxVjPSAxG3k3x6GjWkdtq0XI8A/exec'
       };
     }
 
@@ -900,7 +901,6 @@
         const res = await fetch(fetchUrl);
         const text = await res.text();
 
-        // Kiểm tra an toàn xem có bị trả về trang HTML đăng nhập không
         let data;
         try {
           data = JSON.parse(text);
