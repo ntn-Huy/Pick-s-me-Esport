@@ -1,61 +1,73 @@
-# ⚡ AOG W26: ERA OF GLORY — Nexus Esport Arena System
+# ⚡ Nexus Pick'Em Esport Arena — Multi-Title Prediction Platform
 
-> Nền tảng dự đoán kết quả thi đấu (Pick'em), tính điểm thông minh và mô phỏng phân nhánh giải đấu Thể thao Điện tử (Đấu Trường Danh Vọng - Liên Quân Mobile) xây dựng theo kiến trúc Single-file Web App độc lập.
+> Nền tảng dự đoán kết quả thi đấu (Pick'em), phân nhánh giải đấu, tính điểm thông minh và bảng xếp hạng thể thao điện tử (Esport) xây dựng theo kiến trúc Single-file Web App độc lập (`index.html`), sẵn sàng triển khai trên GitHub Pages mà không cần cấu hình build phức tạp.
 
-![AOG W26 Banner](https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&h=400&fit=crop&q=80)
+![Pick'Em Arena Banner](https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&h=420&fit=crop&q=80)
 
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-00f2fe?style=for-the-badge&logo=github)](https://pages.github.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-8b5cf6?style=for-the-badge)](LICENSE)
-[![Architecture: All--in--One](https://img.shields.io/badge/Architecture-Single--File%20index.html-f59e0b?style=for-the-badge)](index.html)
+[![Esport Titles](https://img.shields.io/badge/Esports-Liên%20Quân%20Mobile%20%7C%20Multi--Title%20Ready-8b5cf6?style=for-the-badge)](https://lienquan.garena.vn/)
+[![Architecture](https://img.shields.io/badge/Architecture-Single--File%20All--In--One-f59e0b?style=for-the-badge)](index.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 ---
 
-## 🌟 Điểm Nổi Bật & Tính Năng Đột Phá
+## 🎮 TỔNG QUAN HỆ THỐNG (SYSTEM OVERVIEW)
 
-Hệ thống được thiết kế dựa trên ngôn ngữ thị giác **Cyber Mecha Glass** của ấn phẩm chính thức **AOG Winter 2026 (W26) — ERA OF GLORY**:
+**Nexus Pick'Em Esport** là hệ thống dự đoán kết quả thi đấu trực quan dành cho cộng đồng Esport. Nền tảng được tối ưu hóa giao diện và dữ liệu theo chuẩn mùa giải **Đấu Trường Danh Vọng (AOG Mùa Đông 2026 - ERA OF GLORY)** của bộ môn **Liên Quân Mobile**, đồng thời sở hữu thiết kế module linh hoạt để mở rộng sang các tựa game Esport khác như Valorant, League of Legends, PUBG,...
 
-### 1. 🎮 Dự Đoán Lịch Trình & Tỉ Số Chuẩn Esport
-- **Dải thẻ trận đấu Mecha Strip:** Cắt góc đa giác (`clip-path`), hiển thị màu cờ nhận diện của từng đội tuyển.
-- **Dự đoán 1-chạm & Tỉ số trực tiếp:** Hỗ trợ bộ đếm tỉ số chuyên nghiệp (BO3, BO5, BO7), tự động định đoạt đội thắng cuộc khi chạm trần ván đấu và tính điểm thưởng Pick'em tức thì.
+### Lộ Trình Hỗ Trợ Bộ Môn (Title Roadmap)
+- [x] **Liên Quân Mobile (Arena of Valor):** Chuẩn thể thức AOG (Vòng bảng BO5, Play-off Double Elimination BO7, Bounty Hunter, Swiss Stage AIC/APL).
+- [ ] **Valorant / CS2:** Thể thức Nhánh Thắng/Thua Map Veto BO3/BO5 *(Đang phát triển)*.
+- [ ] **Liên Minh Huyền Thoại (LoL - LCK/VCS):** Bảng xếp hạng điểm tích lũy & Play-off 6 đội *(Dự kiến)*.
+
+---
+
+## 🌟 TÍNH NĂNG NỔI BẬT (CORE CAPABILITIES)
+
+### 1. ⚔️ Dự Đoán Lịch Trình & Tỉ Số 1-Chạm (Match Pick'Em)
+- **Thẻ trận Mecha Strip:** Cắt góc đa giác đặc trưng của thể thao điện tử, hiển thị màu sắc và logo nhận diện của từng tổ chức.
+- **Bộ tùy biến tỉ số trực tiếp:** Tùy biến tỉ số nhanh qua nút `+ / -` cho các thể thức BO3, BO5, BO7; tự động xác định đội chiến thắng khi chạm điểm trần và cộng điểm Pick'em tức thì.
 
 ### 2. 📊 Bảng Điểm On-Air & Tự Động Tính Thưởng "Bounty Hunter"
 - Mô phỏng chính xác giao diện truyền hình giải đấu (Broadcast On-Air).
-- **In-line Live Customization:** Cho phép chỉnh sửa trực tiếp số Trận, Thắng, Thua, Hiệu số game.
-- **Thuật toán tự động:** Tính toán điểm số giải đấu và tiền thưởng tích lũy **Bounty Hunter (VNĐ)** theo từng trận thắng; hỗ trợ tự động xếp hạng Top 1 (Hoàng kim), Top 2-4 (Playoff) và Top nguy hiểm.
+- **Chỉnh sửa trực tiếp (In-line Edit):** Tự do thay đổi số trận đã đấu, số trận thắng/thua, hiệu số game.
+- **Thuật toán tự động:** Tự động tính điểm tổng và tiền thưởng tích lũy **Bounty Hunter (VNĐ)** theo từng trận thắng; phân định rực rỡ vị trí Top 1 Hoàng kim, Top 2-4 Playoff và nhóm nguy hiểm rớt hạng.
 
-### 3. 🔱 Sơ Đồ Play-off Nhánh Thắng / Nhánh Thua (Double Elimination)
-- **Đường rẽ nhánh Vector SVG (`cyber-line`):** Hiệu ứng đường truyền dữ liệu laser phát sáng nối trực tiếp các cặp đấu từ Bán kết nhánh thắng, Bán kết nhánh thua, Chung kết nhánh tới Chung kết tổng.
+### 3. 🔱 Sơ Đồ Nhánh Thắng / Nhánh Thua (Double Elimination Playoff)
+- **Đường rẽ nhánh Vector SVG (`cyber-line`):** Hiệu ứng laser phát sáng neon kết nối trực tiếp các cặp đấu từ Bán kết nhánh thắng, Bán kết nhánh thua, Chung kết nhánh tới Chung kết tổng.
 - Tích hợp ô nhập tỉ số BO7 độc lập cho từng cặp đấu; tự động luân chuyển đội thắng/thua lên nhánh trên hoặc xuống nhánh dưới.
 
 ### 4. 🌐 Mô Phỏng Thể Thức Thụy Sĩ (Swiss Stage System)
-- Chuẩn quốc tế (AIC/APL): Phân loại tự động 3 nhóm: **Tiến vào Tứ Kết (3 Thắng)**, **Cạnh tranh vé vớt (1-2, 2-1)** và **Chính thức bị loại (3 Thua)**.
+- Chuẩn thi đấu quốc tế (AIC/APL/CKTG): Tự động phân loại các đội tuyển theo kết quả: **Đủ điều kiện vào Tứ Kết (3 Thắng)**, **Khu vực cạnh tranh (1-2, 2-1)** và **Chính thức dừng cuộc chơi (3 Thua)**.
 
-### 5. 🛠️ Trung Tâm Quản Trị Toàn Diện (Master Admin Control)
-- Dễ dàng tạo thêm tuần đấu mới, thêm/sửa lịch thi đấu, đổi ngày giờ, thể thức.
-- **Kho đội tuyển & Nén ảnh Canvas:** Tự động nén logo đội tuyển tải lên xuống `< 10KB` (JPEG 65%) qua Canvas HTML5, đảm bảo không bao giờ tràn bộ nhớ ô của bảng tính.
-
----
-
-## 🏗️ Kiến Trúc Kỹ Thuật (Nexus Core Standards)
-
-- **Single-file All-in-One:** Toàn bộ HTML5, Tailwind CSS CDN, Font chữ Google Fonts (`Orbitron`, `Teko`, `Rajdhani`, `Plus Jakarta Sans`), FontAwesome 6, hiệu ứng âm thanh **Web Audio API** (không cần file MP3 ngoài) và pháo hoa `canvas-confetti` tích hợp trong **duy nhất 1 tệp `index.html`**.
-- **Chống Đơ / Treo Giao Diện (Anti-Freeze Modal):** Quản lý modal bằng lớp CSS thuần `.system-modal` độc lập, triệt tiêu hoàn toàn xung đột hiển thị lớp phủ đen.
-- **Offline-First & Debounced Cloud Sync:** Lưu trữ an toàn tại trình duyệt qua `localStorage` với bộ lọc lỗi (`sanitizeData`), tự động đệm 1.5s gửi đồng bộ ngầm đến Google Apps Script / Google Sheets.
+### 5. 🛠️ Trung Tâm Quản Trị Giải Đấu Toàn Diện (Master Admin Control)
+- Dễ dàng tạo thêm tuần đấu mới, thêm/sửa lịch thi đấu, đổi ngày giờ, thể thức (BO3/BO5/BO7).
+- **Kho đội tuyển & Nén ảnh Canvas:** Bộ nén ảnh tự động HTML5 Canvas đưa logo đội tuyển tải lên về kích thước tối ưu `< 10KB` (JPEG 65%), bảo đảm không làm tràn dung lượng ô lưu trữ.
 
 ---
 
-## 🚀 Hướng Dẫn Triển Khai
+## ⚙️ BỘ KHUNG KỸ THUẬT NEXUS ARCHITECT
 
-### 1. Đưa Lên GitHub Pages (Chỉ mất 1 phút)
-1. Tạo một repository mới trên GitHub (ví dụ: `aog-w26-pickem-arena`).
+1. **All-in-One Single File:** HTML5, Tailwind CSS, Font chữ gaming (`Orbitron`, `Teko`, `Rajdhani`, `Plus Jakarta Sans`), FontAwesome 6, hiệu ứng âm thanh **Web Audio API** (không phụ thuộc file ngoài) và pháo hoa `canvas-confetti` tích hợp trong **duy nhất 1 file `index.html`**.
+2. **Chống đơ & Treo giao diện (Anti-Freeze Modals):** Quản lý trạng thái mở/đóng modal bằng CSS thuần `.system-modal` độc lập, triệt tiêu hoàn toàn lỗi đè lớp phủ tàng hình.
+3. **Lưu trữ Offline & Đồng bộ Cloud không máy chủ:**
+   - Hoạt động mượt mà ở chế độ ngoại tuyến qua `localStorage` đi kèm bộ lọc dữ liệu an toàn `sanitizeAppState`.
+   - Cơ chế **Debounce Sync 1.5s** tự động đẩy dữ liệu dự đoán về Google Sheets thông qua Google Apps Script Web App.
+
+---
+
+## 🚀 HƯỚNG DẪN TRIỂN KHAI NHANH
+
+### Cách 1: Xuất Bản Lên GitHub Pages (Chỉ mất 1 phút)
+1. Tạo một repository mới trên GitHub (Ví dụ: `nexus-pickem-esport` hoặc `aog-w26-pickem-arena`).
 2. Tải trực tiếp tệp `index.html` lên thư mục gốc (`root`) của repo.
-3. Vào **Settings** > **Pages** > Tại mục **Build and deployment**, chọn Branch là `main` / `root` rồi nhấn **Save**.
-4. Trang web của bạn sẽ được xuất bản trực tuyến ngay lập tức!
+3. Vào **Settings** > **Pages** > Tại mục **Build and deployment**, chọn Branch là `main` (hoặc `master`) / thư mục `/root` rồi nhấn **Save**.
+4. Trang web của bạn sẽ hoạt động trực tuyến ngay lập tức với đầy đủ tính năng.
 
-### 2. Kết Nối Google Sheets Làm Máy Chủ Lưu Trữ Dữ Liệu (Tùy chọn)
-Nếu bạn muốn tự động lưu lại mọi dự đoán của khán giả về Google Sheets:
-1. Mở một bảng tính mới tại [Google Sheets](https://sheets.google.com).
-2. Vào menu **Tiện ích mở rộng (Extensions)** > **Apps Script**, dán đoạn mã sau:
+### Cách 2: Kết Nối Google Sheets Làm Cơ Sở Dữ Liệu (Tùy chọn)
+Để tự động thu thập kết quả dự đoán của người xem về Google Sheets:
+1. Mở một trang tính mới tại [Google Sheets](https://sheets.google.com).
+2. Vào **Tiện ích mở rộng (Extensions)** > **Apps Script**, xóa nội dung mặc định và dán đoạn mã sau:
    ```javascript
    function doPost(e) {
      try {
@@ -65,7 +77,7 @@ Nếu bạn muốn tự động lưu lại mọi dự đoán của khán giả v
          data.timestamp,
          data.tournament,
          data.state.points,
-         data.state.playoffs.champion || "Chưa xác định",
+         data.state.playoffs.champion || "Chưa chọn",
          JSON.stringify(data.state.matches),
          JSON.stringify(data.state.standings)
        ]);
