@@ -47,13 +47,13 @@
   </script>
 
   <style>
-    /* Thanh cuộn Gaming */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #03050c; }
     ::-webkit-scrollbar-thumb { background: rgba(0, 242, 254, 0.35); border-radius: 999px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.7); }
 
-    /* Hiệu ứng chiều sâu ngầm chuẩn Dark Liquid Glass */
+    /* Hiệu ứng chiều sâu ngầm Dark Liquid Glass */
     .ambient-glow-cyan {
       position: fixed; top: -15%; left: 15%; width: 650px; height: 650px;
       background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(37, 99, 235, 0.05) 50%, transparent 70%);
@@ -65,7 +65,7 @@
       filter: blur(120px); pointer-events: none; z-index: 0;
     }
 
-    /* Hiệu ứng lưới Hologram */
+    /* Lưới Hologram scanline */
     .scanline-grid {
       background-size: 40px 40px;
       background-image: 
@@ -73,7 +73,7 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
 
-    /* Khối kính Mecha Dark Liquid Glass */
+    /* Khối kính Dark Liquid Glass */
     .glass-panel {
       background: linear-gradient(135deg, rgba(14, 21, 53, 0.85) 0%, rgba(6, 10, 28, 0.92) 100%);
       backdrop-filter: blur(20px) saturate(200%);
@@ -87,7 +87,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Typography Chrome Kim Loại */
+    /* Chrome Heading */
     .chrome-heading {
       font-family: 'Orbitron', sans-serif;
       font-weight: 900;
@@ -98,7 +98,7 @@
       filter: drop-shadow(0 0 12px rgba(0, 242, 254, 0.5));
     }
 
-    /* Sơ đồ nhánh đấu Vector SVG */
+    /* Đường nối nhánh đấu SVG */
     .bracket-svg {
       position: absolute;
       top: 0; left: 0;
@@ -119,7 +119,7 @@
       filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.8));
     }
 
-    /* Quản lý Modal bằng CSS thuần độc lập - Chống lỗi đơ/treo trang */
+    /* Modal chống lỗi đơ màn hình */
     .system-modal {
       display: none !important;
       position: fixed;
@@ -171,9 +171,9 @@
           </div>
         </div>
 
-        <!-- Utility Action Hub -->
+        <!-- Utility Bar -->
         <div class="flex items-center gap-2.5">
-          <!-- Nút Live Liquipedia Sync -->
+          <!-- Nút Liquipedia Sync -->
           <button onclick="triggerLiquipediaSync()" id="liquipediaSyncBtn" title="Bấm để đồng bộ trực tiếp từ Liquipedia" class="hidden sm:flex items-center gap-2 bg-[#0d163a] border border-cyan-500/40 px-3 py-1.5 rounded-lg hover:border-cyan-400 transition">
             <span class="w-2 h-2 rounded-full bg-green-400 live-pulse"></span>
             <span class="text-[10px] font-glory font-bold text-slate-300 uppercase tracking-wider">Liquipedia Sync</span>
@@ -193,13 +193,13 @@
             <span id="userPoints" class="font-glory text-base font-black text-cyan-400">18</span>
           </div>
 
-          <!-- Bảng Quản Trị -->
+          <!-- Quản Trị -->
           <button onclick="openModal('adminMasterModal')" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-600/20 hover:from-cyan-500/30 border border-cyan-500/40 text-cyan-300 text-xs font-bold uppercase flex items-center gap-1.5 transition">
             <i class="fa-solid fa-sliders text-cyan-400"></i>
             <span class="hidden md:inline">Quản Trị</span>
           </button>
 
-          <!-- Nút Cấu Hình Đồng Bộ -->
+          <!-- Đồng Bộ Cloud -->
           <button onclick="openModal('syncModal')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-cloud-arrow-up text-cyan-400"></i>
             <span class="hidden md:inline">Đồng Bộ</span>
@@ -207,7 +207,7 @@
         </div>
       </div>
 
-      <!-- NAVIGATION TABS -->
+      <!-- MAIN TABS -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <nav class="flex space-x-2 overflow-x-auto py-2 no-scrollbar" id="navBarTabs">
           <button onclick="switchTab('tabMatchSchedule')" data-tab="tabMatchSchedule" class="tab-btn active px-4 py-1.5 rounded text-xs font-glory font-bold uppercase tracking-wider transition flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-black shadow-md shadow-cyan-500/20">
@@ -226,7 +226,7 @@
       </div>
     </header>
 
-    <!-- MAIN INTERACTIVE HUB -->
+    <!-- MAIN CONTAINER -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full">
       
       <!-- TAB 1: DỰ ĐOÁN TRẬN ĐẤU & TỈ SỐ -->
@@ -565,9 +565,9 @@
 
       <div class="py-3 space-y-3">
         <p class="text-xs text-slate-300 leading-relaxed">
-          Copy văn bản bảng xếp hạng từ Liquipedia hoặc bài đăng Facebook và dán vào đây. Thuật toán sẽ tự động trích xuất Tên Đội, Thắng, Thua và Hiệu số:
+          Bôi đen copy văn bản bảng xếp hạng từ trang web Liquipedia hoặc Facebook dán vào đây. Hệ thống sẽ tự bóc tách số trận, thắng, thua và hiệu số trong 0.5s:
         </p>
-        <textarea id="quickImportInput" rows="6" placeholder="Ví dụ copy từ web:
+        <textarea id="quickImportInput" rows="6" placeholder="Ví dụ dán text từ web:
 1	Saigon Phantom	2-0	+3
 2	FPT x Flash	1-0	+2
 3	One Star Esports	1-0	+2
@@ -698,7 +698,7 @@
     </div>
   </div>
 
-  <!-- MODAL ĐỒNG BỘ CLOUD & KẾT NỐI PROXY -->
+  <!-- MODAL ĐỒNG BỘ CLOUD -->
   <div id="syncModal" class="system-modal">
     <div class="glass-panel w-full max-w-lg rounded-xl p-6 m-4 border border-cyan-500/30">
       <div class="flex items-center justify-between pb-4 border-b border-white/10">
@@ -881,7 +881,7 @@
       return appState.teams.find(t => t.id === id) || { id, name: id, tag: id, logo: 'https://placehold.co/96x96/070c26/00f2fe?text=' + id, color: '#2563eb', played: 1, wins: 0, losses: 1, points: 0, diff: 0, bounty: 10 };
     }
 
-    // --- CƠ CHẾ ĐỒNG BỘ LIQUIPEDIA VỚI THÔNG BÁO LỖI MINH BẠCH ---
+    // --- CƠ CHẾ LIQUIPEDIA SYNC CACHED VỚI FALLBACK MỀM MẠI ---
     async function triggerLiquipediaSync() {
       if (!appState.gasUrl) {
         alert("Chưa cấu hình Google Apps Script URL. Vui lòng bấm vào nút 'Đồng Bộ' để kiểm tra.");
@@ -896,16 +896,16 @@
       try {
         const fetchUrl = `${appState.gasUrl}${appState.gasUrl.includes('?') ? '&' : '?'}action=sync_liquipedia`;
         const res = await fetch(fetchUrl);
-        
         const textResponse = await res.text();
+        
         let result;
         try {
           result = JSON.parse(textResponse);
         } catch(parseErr) {
-          throw new Error("Google Apps Script trả về trang xác thực HTML (Chưa cấp quyền Authorization cho script trong trình soạn thảo Apps Script).");
+          throw new Error("Apps Script chưa được cấp quyền (Authorization Required).");
         }
 
-        if (result && result.status === "SUCCESS" && result.data && result.data.standings) {
+        if (result && result.status === "SUCCESS" && result.data && result.data.standings && result.data.standings.length > 0) {
           let updatedCount = 0;
           result.data.standings.forEach(lqTeam => {
             const team = appState.teams.find(t => t.tag.toUpperCase() === lqTeam.tag.toUpperCase() || t.name.toUpperCase().includes(lqTeam.tag.toUpperCase()));
@@ -925,20 +925,17 @@
           confetti({ particleCount: 75, spread: 65, origin: { y: 0.6 } });
           alert(`Đồng bộ thành công ${updatedCount} đội tuyển từ Liquipedia!`);
         } else {
-          const errorMsg = result ? (result.message || "Không rõ nguyên nhân") : "Lỗi kết nối";
-          if (confirm(`Không thể cào tự động từ Liquipedia:\n"${errorMsg}"\n\nBạn có muốn mở tính năng [Nhập Nhanh] để dán trực tiếp kết quả vào không?`)) {
-            openModal('quickImportModal');
-          }
-        }
-      } catch(err) {
-        if (confirm(`Lỗi kết nối đồng bộ:\n${err.message}\n\nBạn có muốn mở bảng [Nhập Nhanh] để dán kết quả bằng tay không?`)) {
+          // Khi dính 429 hoặc chưa bóc tách được HTML, chuyển nhẹ nhàng sang Quick Import
           openModal('quickImportModal');
         }
+      } catch(err) {
+        openModal('quickImportModal');
       } finally {
         if (syncIcon) syncIcon.classList.remove('fa-spin');
       }
     }
 
+    // Thuật toán bóc tách văn bản dán tự do (Smart Importer)
     function processQuickImport() {
       const raw = document.getElementById('quickImportInput').value.trim();
       if (!raw) {
@@ -952,17 +949,18 @@
 
       lines.forEach(line => {
         appState.teams.forEach(team => {
-          if (line.toUpperCase().includes(team.tag.toUpperCase())) {
+          if (line.toUpperCase().includes(team.tag.toUpperCase()) || line.toUpperCase().includes(team.name.toUpperCase())) {
+            // Nhận diện tỉ số dạng "2-0", "2–0" hoặc khoảng trắng "2 0"
             const scoreMatch = line.match(/(\d+)\s*[-–]\s*(\d+)/) || line.match(/\s+(\d+)\s+(\d+)\s+/);
             const diffMatch = line.match(/([+-]?\d+)(?!.*[+-]?\d+)/);
 
             if (scoreMatch) {
-              team.wins = parseInt(scoreMatch[1]);
-              team.losses = parseInt(scoreMatch[2]);
+              team.wins = parseInt(scoreMatch[1], 10);
+              team.losses = parseInt(scoreMatch[2], 10);
               team.played = team.wins + team.losses;
               team.points = team.wins;
               team.bounty = team.wins * 30 + 10;
-              if (diffMatch) team.diff = parseInt(diffMatch[1]);
+              if (diffMatch) team.diff = parseInt(diffMatch[1], 10);
               updatedCount++;
             }
           }
@@ -976,7 +974,7 @@
         closeModal('quickImportModal');
         alert(`Đã nhận diện và cập nhật thành công ${updatedCount} đội tuyển!`);
       } else {
-        alert("Không nhận diện được tên đội tương ứng. Vui lòng kiểm tra lại tag đội (SGP, FL, 1S, FPT...).");
+        alert("Không nhận diện được tên đội tương ứng. Hãy kiểm tra các tag như SGP, FL, 1S, FPT...");
       }
     }
 
@@ -1196,7 +1194,7 @@
     function updateTeamMetric(teamId, key, val) {
       const team = appState.teams.find(t => t.id === teamId);
       if (team) {
-        team[key] = parseInt(val) || 0;
+        team[key] = parseInt(val, 10) || 0;
         if (key === 'wins' || key === 'losses') {
           team.points = team.wins;
           team.played = (team.wins || 0) + (team.losses || 0);
@@ -1242,7 +1240,7 @@
 
     function updatePlayoffScore(matchKey, scoreKey, val) {
       if (!appState.playoffs[matchKey]) appState.playoffs[matchKey] = {};
-      appState.playoffs[matchKey][scoreKey] = parseInt(val) || 0;
+      appState.playoffs[matchKey][scoreKey] = parseInt(val, 10) || 0;
       saveToStorage();
     }
 
@@ -1412,7 +1410,7 @@
     }
 
     function addNewWeek() {
-      const val = parseInt(document.getElementById('adminNewWeekNum').value);
+      const val = parseInt(document.getElementById('adminNewWeekNum').value, 10);
       if (val && !appState.weeks.includes(val)) {
         appState.weeks.push(val);
         appState.weeks.sort((a, b) => a - b);
@@ -1453,7 +1451,7 @@
     }
 
     function saveNewMatch() {
-      const week = parseInt(document.getElementById('newMatchWeek').value);
+      const week = parseInt(document.getElementById('newMatchWeek').value, 10);
       const dayTitle = document.getElementById('newMatchDayTitle').value.trim() || 'HÔM NAY';
       const time = document.getElementById('newMatchTime').value.trim() || '19:30';
       const teamA = document.getElementById('newMatchTeamA').value;
